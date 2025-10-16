@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    int f[50], p, i, j, k, a;
+
+    for(i=0;i<50;i++)
+        f[i] = 0;
+
+    printf("Enter how many blocks already allocated: ");
+    scanf("%d", &k);
+    printf("Enter blocks already allocated: ");
+    for(i=0;i<k;i++) {
+        scanf("%d", &a);
+        f[a] = 1;
+    }
+
+    while(1) {
+        printf("\nEnter the starting block and length of file: ");
+        scanf("%d %d", &p, &a);
+        for(j=p;j<(p+a);j++) {
+            if(f[j] == 0)
+                f[j] = 1;
+            else {
+                printf("Block %d already allocated.\n", j);
+                break;
+            }
+        }
+        if(j == p + a)
+            printf("File allocated successfully.\n");
+
+        printf("Do you want to enter more files? (1.Yes / 0.No): ");
+        scanf("%d", &k);
+        if(k == 0) break;
+    }
+    return 0;
+}
